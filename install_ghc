@@ -1,0 +1,25 @@
+#! /bin/bash
+
+. setup_environment
+
+case "$GHC_VERSION" in
+    710) 
+        git clone -b $GIT_BRANCH  --recursive git://git.haskell.org/ghc.git 
+        cd ghc
+        ;;
+    784) 
+        git clone -b $GIT_BRANCH http://git.haskell.org/ghc.git
+        cd ghc
+        ./sync-all get -b $GIT_BRANCH
+        ;;
+    *) 
+        echo "Invalid branch : $GIT_BRANCH"
+        exit 1
+        ;;
+esac
+
+cat mk/build.mk.sample  | sed -e '/#Build.*quick$/s/^#//' > mk/build.mk 
+./boot 
+./configure 
+make 
+make install

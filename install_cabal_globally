@@ -1,0 +1,7 @@
+#! /bin/bash
+
+. setup_environment
+
+cd cabal
+cabal install --global Cabal/ cabal-install/ 
+

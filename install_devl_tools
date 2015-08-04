@@ -1,0 +1,8 @@
+#! /bin/bash
+
+apt-get update && apt-get install -y \
+    daemontools \
+    git \
+    openssh-server \
+    tmux \
+    vim

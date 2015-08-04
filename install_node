@@ -1,0 +1,9 @@
+#! /bin/bash
+
+. setup_environment
+
+git clone -b $GIT_BRANCH https://github.com/joyent/node.git 
+cd node
+./configure 
+make 
+make install 

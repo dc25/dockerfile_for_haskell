@@ -1,0 +1,24 @@
+#! /bin/bash
+apt-get update && apt-get install -y \
+    autoconf  \
+    automake  \
+    bzip2  \
+    dblatex  \
+    docbook-utils  \
+    docbook-xsl  \
+    g++  \
+    git  \
+    haskell-platform  \
+    libgmp-dev  \
+    libtool  \
+    libxml2-utils  \
+    linux-tools-generic  \
+    make  \
+    ncurses-dev  \
+    nodejs  \
+    nodejs-legacy  \
+    npm  \
+    python  \
+    texlive-font-utils \
+    xutils-dev 
+

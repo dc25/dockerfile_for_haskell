@@ -1,0 +1,27 @@
+#! /bin/sh
+
+. ./setup_environment
+
+echo 'deb http://download.fpcomplete.com/ubuntu/trusty stable main'|tee /etc/apt/sources.list.d/fpco.list
+
+apt-get update && apt-get install stack -y --force-yes
+
+touch /root/aliases 
+
+case $GHC_VERSION in
+    710)
+        cat >> /root/aliases << EOF
+alias wgstk='wget https://www.stackage.org/nightly/cabal.config'
+EOF
+        ;;
+    784)
+        cat >> /root/aliases << EOF
+alias wgstk='wget https://www.stackage.org/lts/cabal.config'
+EOF
+        ;;
+    *)
+        echo "Invalid GHC_VERSION : $GHC_VERSION"
+        exit 1
+        ;;
+esac
+

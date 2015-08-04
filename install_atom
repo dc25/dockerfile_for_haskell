@@ -1,0 +1,18 @@
+#! /bin/bash
+
+## If these packages are not installed then atom install complains.
+apt-get update && apt-get install -y \
+   gconf2 \
+   gconf-service \
+   git \
+   gvfs-bin \
+   libgtk2.0-0 \
+   libnotify4 \
+   libnss3 \
+   xdg-utils
+
+wget https://atom.io/download/deb --output-document atom-amd64.deb
+dpkg -i atom-amd64.deb
+
+su - root -c 'apm install language-haskell haskell-ghc-mod ide-haskell autocomplete-haskell'
+

@@ -1,0 +1,39 @@
+#! /bin/sh
+
+### public key for passwordless login ####
+touch /root/.ssh/authorized_keys
+cat >> /root/.ssh/authorized_keys << EOF
+ssh-dss AAAAB3NotActuallyAPublicKeyd1zzZk012hPAIIjLlw6wPqb248GNHLEu9Bc3abRuQztT66YUNWve/exVx68Vj0lNBo6uNdxwoj/xNXGtGcinP76rsS8J1Hy2uYzEY+vDW8dVjYxqgC/S6OHFaKQZ+20uoh6796kSoiBsSGT6bkjP0Vz720HjUDCx392bPAAAAFQDVwDewXpscykH0ydU2nslH2pm8HwAAAIBTJA09upY9ijmZOqkd2s5ndJdwqAq3POPAsP+98zWzRHOOclfsTuNvkV5lh2ownlkLnkZrbCbvQTLoyU/TUjKPUKD+2NV6FUzSmDDSjlXIvTxm9YzC+lKPDySpWOquGWCx4J4aMLy9zmcaC/m0CsV93qwYWru3m3sa39T6sLpD7gAAAIAKmpTCCPkhlSQVOTztIiZhcOlvzPnFxP5Ma8ymASf+7OSxDreiKFY+28GTPIfwYsSC6aLnIiutYjzo5V+EqObB/N4QPG01DqEjJbVJBu3She+D110181AtF6r9vW3Kf1fyje7WIM/Y5pu94SZguMvNmtu+Od6rUSGgUqquKQrnAA== dave@peach
+EOF
+
+### Custom bash aliases ####
+touch /root/aliases 
+cat >> /root/aliases << EOF
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+alias v=vim
+
+alias pyser='python -m SimpleHTTPServer'
+EOF
+
+### Custom vim settings ####
+touch /root/myVimrc
+cat >> /root/myVimrc << EOF
+
+set sw=4
+set ts=4
+set expandtab
+set ic
+set fileformat=unix
+set encoding=utf-8
+EOF
+
+mkdir ~/tmp
+
+### git global configuration - uncomment as needed ###
+# git config --global user.email "you@yourmail.com"
+# git config --global user.name "First Last"             
+

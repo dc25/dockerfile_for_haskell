@@ -1,0 +1,10 @@
+#! /bin/bash
+
+. setup_environment
+
+git clone https://github.com/ghcjs/ghcjs.git 
+git clone https://github.com/ghcjs/ghcjs-prim.git 
+## cd ghcjs 
+## git checkout 484ab4bb69c93a0d4dc8e52fd82707a67e8c8d1e
+## cd ..
+cabal install --reorder-goals --max-backjumps=-1 ./ghcjs ./ghcjs-prim

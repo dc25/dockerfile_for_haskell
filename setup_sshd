@@ -1,0 +1,7 @@
+#! /bin/sh
+
+mkdir -p /services/sshd /var/run/sshd /root/.ssh
+echo "#!/bin/bash\nexec /usr/sbin/sshd" > /services/sshd/run
+chmod +x /services/sshd/run
+sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+

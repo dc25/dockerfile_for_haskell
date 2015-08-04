@@ -1,0 +1,14 @@
+#! /bin/sh
+
+echo "\n. ~/startup" >> /root/.bashrc
+
+touch ~/startup
+touch ~/aliases
+
+cat >> /root/startup << EOF
+. ~/aliases
+
+export PATH=\
+/root/.cabal/bin:\
+\$PATH
+EOF

@@ -1,0 +1,27 @@
+export PATH=${HOME}/.cabal/bin:$PATH
+
+GIT_BRANCH="HEAD"
+GHC_VERSION=NONE
+
+while getopts ":b:v:" opt; do
+  case $opt in
+    b)
+      ## echo "-a was triggered, Parameter: $OPTARG" >&2
+      GIT_BRANCH=$OPTARG
+      ;;
+    v)
+      GHC_VERSION=$OPTARG
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+    :)
+      echo "Option -$OPTARG requires an argument." >&2
+      exit 1
+      ;;
+  esac
+done
+
+echo "GHC_VERSION=${GHC_VERSION}"
+echo "GIT_BRANCH=${GIT_BRANCH}"

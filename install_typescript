@@ -1,0 +1,4 @@
+
+. ./setup_environment
+
+npm install -g typescript
