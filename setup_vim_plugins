@@ -7,15 +7,18 @@ cd /tmp
 git clone https://github.com/tpope/vim-pathogen.git
 cp vim-pathogen/autoload/pathogen.vim /root/.vim/autoload
 rm -rf vim-pathogen
+mkdir -p /root/.vim/bundle
+
+cd /root/.vim/bundle
 
 #### syntastic
-mkdir -p /root/.vim/bundle
-cd /root/.vim/bundle
 git clone https://github.com/scrooloose/syntastic.git
 
 #### vim-hdevtools
-cd /root/.vim/bundle
 git clone https://github.com/bitc/vim-hdevtools.git
+
+#### vim2hs
+git clone https://github.com/dag/vim2hs.git
 
 #### vim startup
 touch /root/.vimrc
