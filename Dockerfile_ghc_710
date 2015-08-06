@@ -47,7 +47,7 @@ ADD install_alex_and_happy /workarea/
 RUN ./install_alex_and_happy 
 
 ADD install_ghc /workarea/
-RUN ./install_ghc -v 710 -b ghc-7.10
+RUN ./install_ghc -v 710 -b ghc-7.10.2-release
 
 ADD install_haskell_devl_tools /workarea/
 RUN ./install_haskell_devl_tools -v 710
@@ -65,7 +65,7 @@ ADD install_ghcjs /workarea/
 RUN ./install_ghcjs 
 
 ADD boot_ghcjs /workarea/
-RUN ./boot_ghcjs -v 710 -b ghc-7.10
+RUN ./boot_ghcjs -v 710 
 
 ADD install_typescript /workarea/
 RUN ./install_typescript 
@@ -74,16 +74,7 @@ RUN ./install_typescript
 #####                                 #####
 #####    Personal Customization       #####
 #####                                 #####
-##### Either uncomment the next two   #####
-##### lines or use:                   #####
-#####                                 #####
-##### Dockerfile_ghc_710_personalized #####
-#####                                 #####
-##### instead of this file to get to  #####
-##### personalized image faster.      #####
-#####                                 #####
 ###########################################
-## ADD personalize /workarea/
-## RUN ./personalize
-###########################################
+ADD personalize /workarea/
+RUN ./personalize
 
