@@ -2,6 +2,10 @@
 
 . setup_environment
 
+mkdir $GHC_VERSION
+mkdir -p $BUILD_PREFIX
+cd $GHC_VERSION
+
 case "$GHC_VERSION" in
     710) 
         git clone -b $GIT_BRANCH  --recursive git://git.haskell.org/ghc.git 
@@ -20,6 +24,6 @@ esac
 
 cat mk/build.mk.sample  | sed -e '/#Build.*quick$/s/^#//' > mk/build.mk 
 ./boot 
-./configure 
+./configure --prefix=$BUILD_PREFIX
 make 
 make install
