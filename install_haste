@@ -1,0 +1,14 @@
+#/bin/bash
+
+. ./setup_environment
+
+apt-get update && apt-get install -y \
+    apt-utils \
+    libbz2-dev
+
+export PATH=/workarea/ghc784install/bin:$PATH
+
+git clone https://github.com/valderman/haste-compiler.git -b ${GIT_BRANCH}
+cd haste-compiler
+cabal install
+haste-boot --force -–local
