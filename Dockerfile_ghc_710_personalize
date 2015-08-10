@@ -1,7 +1,0 @@
-FROM davecompton/ghc_710
-
-WORKDIR /workarea
-
-ADD personalize /workarea/
-RUN ./personalize
-
