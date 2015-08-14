@@ -3,55 +3,7 @@
 . ./setup_environment
 
 cabal install hdevtools
-
-case $GHC_VERSION in
-    784)
-        cabal install ghc-mod
-        ;;
-    710)
-        ###
-        ### The ghc-mod installed by default by cabal is not compatible with ghc 7.10.1
-        ### To get around this, build a sandboxed ghc-mod and add sandbox directories
-        ### to the path to pick up executables.
-        ### 
-        ### https://github.com/kazu-yamamoto/ghc-mod/issues/437
-        ###
-        
-        ###
-        ### Also, according to notes on the same page, before building ghc-mod,
-        ### the version (in the ghc-mod.cabal file) should be set to a non zero value.  
-        ### Having a zero version caused problems with syntastic in the vim editor.
-        ### I chose version number 5.2.1.2 which was the latest as of 2015-08-02
-        ### according to https://hackage.haskell.org/package/ghc-mod
-        ### 
-
-        git clone https://github.com/kazu-yamamoto/ghc-mod.git
-        cd ghc-mod
-        cabal sandbox init --sandbox ./.cabal-sandbox/7.10.1
-        cp ghc-mod.cabal ghc-mod.cabal.tmp
-        cat ghc-mod.cabal.tmp | sed -e '/Version:.*0/s/0/5.2.1.2/' > ghc-mod.cabal
-        cabal update
-        cabal install --only-dependencies --builddir=dist/7.10.1
-        cabal configure --builddir=dist/7.10.1
-        cabal build     --builddir=dist/7.10.1
-
-        WDIR=`pwd`
-
-        touch /root/startup
-        cat >> /root/startup << EOF
-
-export PATH=\
-$WDIR/dist/7.10.1/build/ghc-mod:\
-$WDIR/dist/7.10.1/build/ghc-modi:\
-\$PATH
-EOF
-        cd ..
-        ;;
-    *)
-        echo "Invalid GHC_VERSION : $GHC_VERSION" 
-        ;;
-esac
-
+cabal install ghc-mod
 cabal install hlint
 cabal install ghcid
 
