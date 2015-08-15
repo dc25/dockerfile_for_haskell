@@ -1,5 +1,7 @@
 FROM ubuntu:vivid
 
+ENV REFRESHED_AT 2015-08-14
+
 RUN mkdir /workarea
 WORKDIR /workarea
 
