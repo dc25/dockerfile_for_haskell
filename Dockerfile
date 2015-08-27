@@ -117,8 +117,8 @@ RUN ./select_ghc -v 710
 ##########################################################################
 ##### Customization - Edit 'personalize' to suit your needs.         #####
 ##########################################################################
-## ADD personalize /workarea/
-## RUN ./personalize
+ADD personalize /workarea/
+RUN ./personalize
 
 EXPOSE 22
 EXPOSE 8000
