@@ -12,7 +12,7 @@ The resulting environment contains the following
   * typescript (via npm)
 * Haskell development tools
   * cabal 1.22.6  (built from source)
-  * ghc-mod & ghc-modi (built from source)
+  * ghc-mod & ghc-modi (via cabal)
   * hdevtools (via cabal)
   * ghcid (via cabal)
   * hlint (via cabal)
