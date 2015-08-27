@@ -1,0 +1,29 @@
+#! /bin/bash
+
+. setup_environment
+
+case $GHC_VERSION in
+    710)
+        GHC_BIN_DIR=/workarea/ghc7102install/bin
+        ;;
+    784)
+        GHC_BIN_DIR=/workarea/ghc784install/bin
+        ;;
+    *)
+        echo "Invalid GHC_VERSION : $GHC_VERSION"
+        exit 1
+        ;;
+esac
+
+### Custom startup script ####
+touch /root/startup
+cat >> /root/startup << EOF
+
+export PATH=\
+$GHC_BIN_DIR:\
+\$PATH
+
+## To use GHC 7.8.4, edit the PATH variable to use /workarea/ghc784install/bin
+## To use GHC 7.10.2, edit the PATH variable to use /workarea/ghc7102install/bin
+
+EOF

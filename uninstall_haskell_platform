@@ -1,0 +1,8 @@
+#! /bin/bash
+apt-get update && apt-get remove -y \
+    haskell-platform \
+    cabal-install \
+    ghc 
+
+apt-get autoremove -y
+
