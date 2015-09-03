@@ -1,5 +1,8 @@
 FROM ubuntu:vivid
 
+# Just a dummy to change to enable rebuilding.
+ENV DOCKER_BUILD 1
+
 RUN mkdir /workarea
 WORKDIR /workarea
 
