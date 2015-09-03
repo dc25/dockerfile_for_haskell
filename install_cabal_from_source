@@ -1,9 +1,11 @@
 #! /bin/bash
 
-. setup_environment
+. ./setup_environment
+timestamp_start
 
 cabal update 
 git clone -b ${GIT_BRANCH} git://github.com/haskell/cabal.git 
 cd cabal
 cabal install Cabal/ cabal-install/ 
 
+timestamp_finish

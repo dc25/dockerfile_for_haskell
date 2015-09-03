@@ -29,3 +29,17 @@ done
 echo "GHC_VERSION=${GHC_VERSION}"
 echo "GIT_BRANCH=${GIT_BRANCH}"
 echo "BUILD_PREFIX=${BUILD_PREFIX}"
+
+SCRIPT_NAME=${0##*/}
+SCRIPT_ARGUMENTS=$*
+
+function timestamp_start
+{
+    /workarea/timestamp start__${SCRIPT_NAME} ${SCRIPT_NAME} ${SCRIPT_ARGUMENTS} 
+}
+
+function timestamp_finish
+{
+    /workarea/timestamp finish__${SCRIPT_NAME} ${SCRIPT_NAME} ${SCRIPT_ARGUMENTS} 
+}
+

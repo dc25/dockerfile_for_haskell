@@ -1,6 +1,7 @@
 #! /bin/bash
 
-. setup_environment
+. ./setup_environment
+timestamp_start
 
 case $GHC_VERSION in
     710)
@@ -14,12 +15,4 @@ case $GHC_VERSION in
         ;;
 esac
 
-
-
-
-
-
-
-
-
-
+timestamp_finish

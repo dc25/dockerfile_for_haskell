@@ -1,4 +1,8 @@
 #! /bin/bash
+
+. ./setup_environment
+timestamp_start
+
 apt-get update && apt-get install -y \
     autoconf  \
     automake  \
@@ -22,3 +26,4 @@ apt-get update && apt-get install -y \
     texlive-font-utils \
     xutils-dev 
 
+timestamp_finish

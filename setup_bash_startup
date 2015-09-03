@@ -1,6 +1,12 @@
-#! /bin/sh
+#! /bin/bash
 
-echo "\n. ~/startup" >> /root/.bashrc
+. ./setup_environment
+timestamp_start
+
+touch /root/.bashrc
+cat >> /root/.bashrc << EOF
+. ~/startup
+EOF
 
 touch ~/startup
 touch ~/aliases
@@ -12,3 +18,5 @@ export PATH=\
 /root/.cabal/bin:\
 \$PATH
 EOF
+
+timestamp_finish

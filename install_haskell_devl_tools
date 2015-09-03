@@ -1,6 +1,7 @@
-#/bin/bash
+#! /bin/bash
 
 . ./setup_environment
+timestamp_start
 
 cabal install hdevtools
 cabal install ghc-mod
@@ -14,3 +15,5 @@ cabal install ghcid
 #
 ### Don't remember what the problem with ghci-ng was.
 ### cabal install ghci-ng
+
+timestamp_finish

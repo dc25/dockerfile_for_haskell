@@ -1,4 +1,6 @@
-#! /bin/sh
+#! /bin/bash
+. ./setup_environment
+timestamp_start
 
 mkdir -p /root/.vim/autoload
 
@@ -22,7 +24,9 @@ git clone https://github.com/dag/vim2hs.git
 
 #### vim startup
 touch /root/.vimrc
-echo "\n\nso ~/myVimrc" >> /root/.vimrc
+cat >> /root/.vimrc << EOF
+so ~/myVimrc
+EOF
 
 cat > /root/myVimrc << EOF
 " pathogen related
@@ -47,3 +51,4 @@ au FileType haskell nnoremap <buffer> <silent> <F3> :HdevtoolsClear<CR>
 au FileType haskell nnoremap <buffer> <silent> <F4> :HdevtoolsInfo<CR>
 EOF
 
+timestamp_finish

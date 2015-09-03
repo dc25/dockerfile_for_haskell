@@ -1,7 +1,10 @@
-#/bin/bash
+#! /bin/bash
 
 . ./setup_environment
+timestamp_start
 
 cabal update
 cabal install alex 
 cabal install happy
+
+timestamp_finish

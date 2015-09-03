@@ -1,5 +1,8 @@
 #! /bin/bash
 
+. ./setup_environment
+timestamp_start
+
 ## If these packages are not installed then atom install complains.
 apt-get update && apt-get install -y \
    gconf2 \
@@ -16,3 +19,4 @@ dpkg -i atom-amd64.deb
 
 su - root -c 'apm install language-haskell haskell-ghc-mod ide-haskell autocomplete-haskell'
 
+timestamp_finish

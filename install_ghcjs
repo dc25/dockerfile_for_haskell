@@ -1,7 +1,10 @@
 #! /bin/bash
 
-. setup_environment
+. ./setup_environment
+timestamp_start
 
 git clone https://github.com/ghcjs/ghcjs.git 
 git clone https://github.com/ghcjs/ghcjs-prim.git 
 cabal install --reorder-goals --max-backjumps=-1 ./ghcjs ./ghcjs-prim
+
+timestamp_finish

@@ -1,4 +1,7 @@
-#! /bin/sh
+#! /bin/bash
+
+. ./setup_environment
+timestamp_start
 
 ### public key for passwordless login ####
 touch /root/.ssh/authorized_keys
@@ -37,3 +40,4 @@ mkdir ~/tmp
 # git config --global user.email "you@yourmail.com"
 # git config --global user.name "First Last"             
 
+timestamp_finish

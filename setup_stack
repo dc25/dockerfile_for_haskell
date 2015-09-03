@@ -1,6 +1,7 @@
-#! /bin/sh
+#! /bin/bash
 
 . ./setup_environment
+timestamp_start
 
 echo 'deb http://download.fpcomplete.com/ubuntu/trusty stable main'|tee /etc/apt/sources.list.d/fpco.list
 
@@ -25,3 +26,4 @@ EOF
         ;;
 esac
 
+timestamp_finish

@@ -1,7 +1,7 @@
 FROM ubuntu:vivid
 
-# Just a dummy to change to enable rebuilding.
-ENV DOCKER_BUILD 1
+# Just a dummy to change to force rebuilding.
+ENV DOCKER_BUILD 5
 
 RUN mkdir /workarea
 WORKDIR /workarea
@@ -16,6 +16,9 @@ ENV LC_ALL en_US.UTF-8
 ##### Save this so PATH can be restored later                        #####
 ##########################################################################
 ENV STARTING_PATH="$PATH"
+
+ADD setup_environment /workarea/
+ADD timestamp /workarea/
 
 ##########################################################################
 ##### Quick and minimal set of developer's tools.                    #####
@@ -35,7 +38,6 @@ RUN ./setup_vim_plugins
 ADD install_atom /workarea/
 RUN ./install_atom 
 
-ADD setup_environment /workarea/
 
 ##########################################################################
 ##### apt-get a collection of utilities that will be needed later    #####

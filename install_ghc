@@ -1,6 +1,7 @@
 #! /bin/bash
 
-. setup_environment
+. ./setup_environment
+timestamp_start
 
 mkdir $GHC_VERSION
 mkdir -p $BUILD_PREFIX
@@ -27,3 +28,5 @@ cat mk/build.mk.sample  | sed -e '/#Build.*quick$/s/^#//' > mk/build.mk
 ./configure --prefix=$BUILD_PREFIX
 make 
 make install
+
+timestamp_finish

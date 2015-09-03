@@ -1,7 +1,16 @@
-#! /bin/sh
+#! /bin/bash
+
+. ./setup_environment
+timestamp_start
 
 mkdir -p /services/sshd /var/run/sshd /root/.ssh
-echo "#!/bin/bash\nexec /usr/sbin/sshd" > /services/sshd/run
+
+cat > /services/sshd/run << EOF
+#!/bin/bash
+exec /usr/sbin/sshd
+EOF
+
 chmod +x /services/sshd/run
 sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
+timestamp_finish

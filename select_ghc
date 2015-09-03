@@ -1,6 +1,7 @@
 #! /bin/bash
 
-. setup_environment
+. ./setup_environment
+timestamp_start
 
 case $GHC_VERSION in
     710)
@@ -27,3 +28,5 @@ $GHC_BIN_DIR:\
 ## To use GHC 7.10.2, edit the PATH variable to use /workarea/ghc7102install/bin
 
 EOF
+
+timestamp_finish

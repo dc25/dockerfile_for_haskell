@@ -1,8 +1,13 @@
 #! /bin/bash
 
+. ./setup_environment
+timestamp_start
+
 apt-get update && apt-get install -y \
     daemontools \
     git \
     openssh-server \
     tmux \
     vim-gtk
+
+timestamp_finish

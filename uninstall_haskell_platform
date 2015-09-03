@@ -1,4 +1,6 @@
 #! /bin/bash
+. ./setup_environment
+timestamp_start
 apt-get update && apt-get remove -y \
     haskell-platform \
     cabal-install \
@@ -6,3 +8,4 @@ apt-get update && apt-get remove -y \
 
 apt-get autoremove -y
 
+timestamp_finish
