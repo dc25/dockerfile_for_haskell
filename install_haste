@@ -10,6 +10,6 @@ apt-get update && apt-get install -y \
 git clone https://github.com/valderman/haste-compiler.git -b ${GIT_BRANCH}
 cd haste-compiler
 cabal install
-haste-boot --force -–local
+haste-boot --force --local
 
 timestamp_finish
