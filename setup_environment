@@ -1,6 +1,6 @@
 export PATH=${HOME}/.cabal/bin:$PATH
 
-GIT_BRANCH="HEAD"
+GIT_BRANCH=master
 GHC_VERSION=NONE
 BUILD_PREFIX=/usr/local
 
