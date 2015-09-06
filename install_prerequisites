@@ -19,6 +19,7 @@ apt-get update && apt-get install -y \
     linux-tools-generic  \
     make  \
     ncurses-dev  \
+    net-tools \
     nodejs  \
     nodejs-legacy  \
     npm  \
