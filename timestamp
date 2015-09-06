@@ -1,5 +1,8 @@
 #! /bin/bash
-mkdir -p timestamps
+
 TIMESTAMP_FILE_NAME=`date +%Y_%m_%d__%H_%M`__${1}
+WORKDIR=${WORKDIR:-`pwd`}
+
+mkdir -p ${WORKDIR}/timestamps
 shift
-echo $* > timestamps/${TIMESTAMP_FILE_NAME}
+echo $* > ${WORKDIR}/timestamps/${TIMESTAMP_FILE_NAME}

@@ -1,8 +1,10 @@
 export PATH=${HOME}/.cabal/bin:$PATH
+export WORKDIR=`pwd`
 
 GIT_BRANCH=master
 GHC_VERSION=NONE
 BUILD_PREFIX=/usr/local
+
 
 while getopts ":b:v:p:" opt; do
   case $opt in
@@ -35,11 +37,11 @@ SCRIPT_ARGUMENTS=$*
 
 function timestamp_start
 {
-    /workarea/timestamp start__${SCRIPT_NAME} ${SCRIPT_NAME} ${SCRIPT_ARGUMENTS} 
+    ${WORKDIR}/timestamp start__${SCRIPT_NAME} ${SCRIPT_NAME} ${SCRIPT_ARGUMENTS} 
 }
 
 function timestamp_finish
 {
-    /workarea/timestamp finish__${SCRIPT_NAME} ${SCRIPT_NAME} ${SCRIPT_ARGUMENTS} 
+    ${WORKDIR}/timestamp finish__${SCRIPT_NAME} ${SCRIPT_NAME} ${SCRIPT_ARGUMENTS} 
 }
 
