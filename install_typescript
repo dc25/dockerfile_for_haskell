@@ -4,5 +4,6 @@
 timestamp_start
 
 npm install -g typescript
+npm install -g tsd
 
 timestamp_finish
