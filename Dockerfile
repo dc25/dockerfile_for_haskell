@@ -1,7 +1,7 @@
 FROM ubuntu:vivid
 
 # Just a dummy to change to force rebuilding.
-ENV DOCKER_BUILD 6
+ENV DOCKER_BUILD 8
 
 RUN mkdir /workarea
 WORKDIR /workarea
@@ -11,11 +11,6 @@ RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8  
 ENV LANGUAGE en_US:en  
 ENV LC_ALL en_US.UTF-8  
-
-##########################################################################
-##### Save this so PATH can be restored later                        #####
-##########################################################################
-ENV STARTING_PATH="$PATH"
 
 ADD setup_environment /workarea/
 ADD timestamp /workarea/
@@ -38,7 +33,6 @@ RUN ./setup_vim_plugins
 ADD install_atom /workarea/
 RUN ./install_atom 
 
-
 ##########################################################################
 ##### apt-get a collection of utilities that will be needed later    #####
 ##########################################################################
@@ -52,27 +46,10 @@ ADD install_alex_and_happy /workarea/
 RUN ./install_alex_and_happy 
 
 ##########################################################################
-##### Install ghc 7.8.4
-##########################################################################
-ADD install_ghc /workarea/
-RUN ./install_ghc -v 784 -b ghc-7.8 -p /workarea/ghc784install
-
-##########################################################################
 ##### Install ghc 7.10.2                                             #####
 ##########################################################################
-RUN ./install_ghc -v 710 -b ghc-7.10.2-release -p /workarea/ghc7102install
-
-##########################################################################
-##### We no longer need the haskell_platform so remove it to make    #####
-##### sure it's not accidentally being used.                         #####
-##########################################################################
-ADD uninstall_haskell_platform /workarea/
-RUN ./uninstall_haskell_platform
-
-##########################################################################
-##### Switch to using ghc 7.10.2                                     #####
-##########################################################################
-ENV PATH="/workarea/ghc7102install/bin:$STARTING_PATH"
+ADD install_ghc /workarea/
+RUN ./install_ghc -v 710 -b ghc-7.10.2-release 
 
 ##########################################################################
 ##### Install some haskell development utilities                     #####
@@ -84,20 +61,10 @@ ADD setup_stack /workarea/
 RUN ./setup_stack -v 710
 
 ##########################################################################
-##### Switch to using ghc 7.8.4 to build haste                       #####
-##########################################################################
-ENV PATH="/workarea/ghc784install/bin:$STARTING_PATH"
-
-##########################################################################
 ##### Install haste.                                                 #####
 ##########################################################################
 ADD install_haste /workarea/
-RUN ./install_haste -b 0.5.1.2
-
-##########################################################################
-##### Switch to using ghc 7.10.2 from now on                         #####
-##########################################################################
-ENV PATH="/workarea/ghc7102install/bin:$STARTING_PATH"
+RUN ./install_haste -b 0.5.1.3
 
 ##########################################################################
 ##### Install ghcjs. Requires a recent version of node so install    #####
@@ -116,13 +83,13 @@ RUN ./boot_ghcjs -v 710
 ##### Install typescript                                             #####
 ##########################################################################
 ADD install_typescript /workarea/
-RUN ./install_typescript 
+RUN ./install_typescript
 
 ##########################################################################
-##### Update shell start script to specify a ghc in PATH .           #####
+##### Install some additional stuff                                  #####
 ##########################################################################
-ADD select_ghc /workarea/
-RUN ./select_ghc -v 710
+ADD install_additional /workarea/
+RUN ./install_additional
 
 ##########################################################################
 ##### Customization - Edit 'personalize' to suit your needs.         #####

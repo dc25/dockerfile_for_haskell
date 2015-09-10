@@ -13,3 +13,4 @@ cabal install
 haste-boot --force --local
 
 timestamp_finish
+
