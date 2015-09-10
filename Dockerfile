@@ -86,12 +86,6 @@ ADD install_typescript /workarea/
 RUN ./install_typescript
 
 ##########################################################################
-##### Install some additional stuff                                  #####
-##########################################################################
-ADD install_additional /workarea/
-RUN ./install_additional
-
-##########################################################################
 ##### Customization - Edit 'personalize' to suit your needs.         #####
 ##########################################################################
 ADD personalize /workarea/
