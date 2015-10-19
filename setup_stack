@@ -7,16 +7,16 @@ echo 'deb http://download.fpcomplete.com/ubuntu/trusty stable main'|tee /etc/apt
 
 apt-get update && apt-get install stack -y --force-yes
 
-touch /root/aliases 
+touch $HOME/aliases 
 
 case $GHC_VERSION in
     710)
-        cat >> /root/aliases << EOF
+        cat >> $HOME/aliases << EOF
 alias wgstk='wget https://www.stackage.org/nightly/cabal.config'
 EOF
         ;;
     784)
-        cat >> /root/aliases << EOF
+        cat >> $HOME/aliases << EOF
 alias wgstk='wget https://www.stackage.org/lts/cabal.config'
 EOF
         ;;

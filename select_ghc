@@ -17,8 +17,8 @@ case $GHC_VERSION in
 esac
 
 ### Custom startup script ####
-touch /root/startup
-cat >> /root/startup << EOF
+touch $HOME/startup
+cat >> $HOME/startup << EOF
 
 export PATH=\
 $GHC_BIN_DIR:\

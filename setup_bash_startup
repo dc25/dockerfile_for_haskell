@@ -3,19 +3,19 @@
 . ./setup_environment
 timestamp_start
 
-touch /root/.bashrc
-cat >> /root/.bashrc << EOF
+touch $HOME/.bashrc
+cat >> $HOME/.bashrc << EOF
 . ~/startup
 EOF
 
 touch ~/startup
 touch ~/aliases
 
-cat >> /root/startup << EOF
+cat >> $HOME/startup << EOF
 . ~/aliases
 
 export PATH=\
-/root/.cabal/bin:\
+$HOME/.cabal/bin:\
 \$PATH
 EOF
 
