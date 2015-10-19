@@ -1,7 +1,7 @@
 FROM ubuntu:vivid
 
 # Just a dummy to change to force rebuilding.
-ENV DOCKER_BUILD 8
+ENV DOCKER_BUILD 9
 
 RUN mkdir /workarea
 WORKDIR /workarea
@@ -64,7 +64,7 @@ RUN ./setup_stack -v 710
 ##### Install haste.                                                 #####
 ##########################################################################
 COPY install_haste /workarea/
-RUN ./install_haste -b 0.5.1.3
+RUN ./install_haste -b 0.5.2
 
 ##########################################################################
 ##### Install ghcjs. Requires a recent version of node so install    #####
