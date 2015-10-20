@@ -15,29 +15,20 @@ ENV LC_ALL en_US.UTF-8
 COPY setup_environment /workarea/
 COPY timestamp /workarea/
 
-##########################################################################
-##### Quick and minimal set of developer's tools.                    #####
-##########################################################################
-COPY setup_bash_startup /workarea/
-RUN ./setup_bash_startup 
-
 COPY install_devl_tools /workarea/
 RUN ./install_devl_tools 
 
 COPY setup_sshd /workarea/
 RUN ./setup_sshd 
 
-COPY setup_vim_plugins /workarea/
-RUN ./setup_vim_plugins 
+EXPOSE 22
+EXPOSE 8000
+ENTRYPOINT ["/usr/bin/svscan", "/services/"]
 
-COPY install_atom /workarea/
-RUN ./install_atom 
+COPY setup_user /workarea/
+RUN ./setup_user dave 1000
 
-##########################################################################
-##### apt-get a collection of utilities that will be needed later    #####
-##########################################################################
-COPY install_prerequisites /workarea/
-RUN ./install_prerequisites 
+USER dave
 
 COPY install_cabal_from_source /workarea/
 RUN ./install_cabal_from_source -b cabal-install-v1.22.6.0 
@@ -85,13 +76,13 @@ RUN ./boot_ghcjs -v 710
 COPY install_typescript /workarea/
 RUN ./install_typescript
 
-##########################################################################
-##### Customization - Edit 'personalize' to suit your needs.         #####
-##########################################################################
+COPY setup_bash_startup /workarea/
+RUN ./setup_bash_startup 
+
+COPY setup_vim_plugins /workarea/
+RUN ./setup_vim_plugins 
+
 COPY personalize /workarea/
 RUN ./personalize
 
-EXPOSE 22
-EXPOSE 8000
-ENTRYPOINT ["/usr/bin/svscan", "/services/"]
-
+USER root

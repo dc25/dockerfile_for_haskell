@@ -3,18 +3,25 @@
 . ./setup_environment
 timestamp_start
 
+
 apt-get update && apt-get install -y \
     autoconf  \
     automake  \
+    bison \
     bzip2  \
+    curl \
     dblatex  \
     docbook-utils  \
     docbook-xsl  \
     g++  \
     git  \
     haskell-platform  \
+    libcurl4-openssl-dev \
+    libdbd-sqlite3-perl \
+    libdbi-perl \
     libgmp-dev  \
     libtool  \
+    libwww-curl-perl \
     libxml2-utils  \
     linux-tools-generic  \
     make  \
@@ -23,8 +30,11 @@ apt-get update && apt-get install -y \
     nodejs  \
     nodejs-legacy  \
     npm  \
+    pkg-config \
     python  \
+    sudo  \
     texlive-font-utils \
     xutils-dev 
+
 
 timestamp_finish

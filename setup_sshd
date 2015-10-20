@@ -3,7 +3,7 @@
 . ./setup_environment
 timestamp_start
 
-mkdir -p /services/sshd /var/run/sshd $HOME/.ssh
+mkdir -p /services/sshd /var/run/sshd 
 
 cat > /services/sshd/run << EOF
 #!/bin/bash

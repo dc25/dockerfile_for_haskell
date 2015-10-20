@@ -1,0 +1,10 @@
+#! /bin/bash
+
+. ./setup_environment
+timestamp_start
+
+adduser --disabled-password --gecos '' --uid $2 $1
+adduser $1 sudo 
+echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+timestamp_finish

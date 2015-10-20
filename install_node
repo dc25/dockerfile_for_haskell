@@ -7,6 +7,6 @@ git clone -b $GIT_BRANCH https://github.com/joyent/node.git
 cd node
 ./configure 
 make 
-make install 
+sudo make install 
 
 timestamp_finish

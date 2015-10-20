@@ -27,6 +27,6 @@ cat mk/build.mk.sample  | sed -e '/#Build.*quick$/s/^#//' > mk/build.mk
 ./boot 
 ./configure --prefix=$BUILD_PREFIX
 make 
-make install
+sudo make install
 
 timestamp_finish

@@ -5,10 +5,7 @@ timestamp_start
 
 case $GHC_VERSION in
     710)
-        ghcjs-boot --dev --ghcjs-boot-dev-branch ghc-7.10 
-        ;;
-    784)
-        ghcjs-boot --dev 
+        ghcjs-boot --dev
         ;;
     *)
         echo "Invalid GHC_VERSION : $GHC_VERSION"
