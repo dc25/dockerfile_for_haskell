@@ -79,4 +79,5 @@ RUN ./install_typescript
 COPY setup_vim_plugins $WORKAREA
 RUN ./setup_vim_plugins 
 
-COPY vimrc $HOME/
+COPY vimrc $WORKAREA
+RUN cp $WORKAREA/vimrc $HOME/.vimrc
