@@ -11,5 +11,6 @@ cat >> $HOME/.bashrc << EOF
 EOF
 
 ## Use the vim plugins installed at docker build.
-ln -s /home/ghc/.vim $HOME
-ln -s /home/ghc/vimrc $HOME/.vimrc
+for s in .cabal .ghc .ghcjs .haste .vim .vimrc; do
+    ln -s /home/ghc/$s $HOME
+done
