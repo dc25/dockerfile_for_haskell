@@ -1,0 +1,15 @@
+#! /bin/bash
+cd /dockerStart
+
+mkdir -p $HOME/.ssh
+cp authorized_keys $HOME/.ssh
+cp startup $HOME
+
+touch $HOME/.bashrc
+cat >> $HOME/.bashrc << EOF
+. ~/startup
+EOF
+
+## Use the vim plugins installed at docker build.
+ln -s /home/ghc/.vim $HOME
+ln -s /home/ghc/vimrc $HOME/.vimrc

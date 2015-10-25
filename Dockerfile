@@ -1,10 +1,10 @@
 FROM ubuntu:vivid
 
-# Just a dummy to change to force rebuilding.
-ENV DOCKER_BUILD 9
+# Build as user ghc with "random" user id.
+ENV USER_NAME ghc
+ENV USER_ID 54836
 
-RUN mkdir /workarea
-WORKDIR /workarea
+ENV WORKAREA /home/$USER_NAME/workarea/
 
 # Set the locale - was (and may still be ) necessary for ghcjs-boot to work
 RUN locale-gen en_US.UTF-8  
@@ -12,77 +12,71 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en  
 ENV LC_ALL en_US.UTF-8  
 
-COPY setup_environment /workarea/
-COPY timestamp /workarea/
+RUN apt-get install -y sudo
+RUN adduser --disabled-password --gecos '' --uid $USER_ID $USER_NAME
+RUN adduser $USER_NAME sudo 
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
-COPY install_devl_tools /workarea/
+USER $USER_NAME
+
+RUN mkdir -p $WORKAREA
+WORKDIR $WORKAREA
+
+RUN echo $WORKAREA
+
+COPY setup_environment $WORKAREA
+COPY timestamp $WORKAREA
+
+COPY install_devl_tools $WORKAREA
 RUN ./install_devl_tools 
 
-COPY setup_sshd /workarea/
+COPY setup_sshd $WORKAREA
 RUN ./setup_sshd 
 
-EXPOSE 22
-EXPOSE 8000
-ENTRYPOINT ["/usr/bin/svscan", "/services/"]
-
-COPY setup_user /workarea/
-RUN ./setup_user dave 1000
-
-USER dave
-
-COPY install_cabal_from_source /workarea/
+COPY install_cabal_from_source $WORKAREA
 RUN ./install_cabal_from_source -b cabal-install-v1.22.6.0 
 
-COPY install_alex_and_happy /workarea/
+COPY install_alex_and_happy $WORKAREA
 RUN ./install_alex_and_happy 
 
 ##########################################################################
 ##### Install ghc 7.10.2                                             #####
 ##########################################################################
-COPY install_ghc /workarea/
+COPY install_ghc $WORKAREA
 RUN ./install_ghc -v 710 -b ghc-7.10.2-release 
 
 ##########################################################################
 ##### Install some haskell development utilities                     #####
 ##########################################################################
-COPY install_haskell_devl_tools /workarea/
+COPY install_haskell_devl_tools $WORKAREA
 RUN ./install_haskell_devl_tools -v 710
 
-COPY setup_stack /workarea/
+COPY setup_stack $WORKAREA
 RUN ./setup_stack -v 710
 
 ##########################################################################
 ##### Install haste.                                                 #####
 ##########################################################################
-COPY install_haste /workarea/
+COPY install_haste $WORKAREA
 RUN ./install_haste -b 0.5.2
 
 ##########################################################################
 ##### Install ghcjs. Requires a recent version of node so install    #####
 ##### that first.                                                    #####
 ##########################################################################
-COPY install_node /workarea/
+COPY install_node $WORKAREA
 RUN ./install_node -b v0.12.7-release 
 
-COPY install_ghcjs /workarea/
+COPY install_ghcjs $WORKAREA
 RUN ./install_ghcjs 
-
-COPY boot_ghcjs /workarea/
-RUN ./boot_ghcjs -v 710 
 
 ##########################################################################
 ##### Install typescript                                             #####
 ##########################################################################
-COPY install_typescript /workarea/
+COPY install_typescript $WORKAREA
 RUN ./install_typescript
 
-COPY setup_bash_startup /workarea/
-RUN ./setup_bash_startup 
-
-COPY setup_vim_plugins /workarea/
+COPY setup_vim_plugins $WORKAREA
 RUN ./setup_vim_plugins 
 
-COPY personalize /workarea/
-RUN ./personalize
-
-USER root
+COPY vimrc $HOME/

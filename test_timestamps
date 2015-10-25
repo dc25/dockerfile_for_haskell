@@ -1,6 +1,0 @@
-#! /bin/bash
-
-. setup_environment
-timestamp_start
-timestamp_finish
-

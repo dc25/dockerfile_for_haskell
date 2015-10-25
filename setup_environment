@@ -45,6 +45,3 @@ function timestamp_finish
     ${WORKDIR}/timestamp finish__${SCRIPT_NAME} ${SCRIPT_NAME} ${SCRIPT_ARGUMENTS} 
 }
 
-mkdir -p $HOME/workarea
-cd $HOME/workarea
-

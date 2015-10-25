@@ -9,23 +9,4 @@ echo 'deb http://download.fpcomplete.com/ubuntu/vivid stable main'|sudo tee /etc
 
 sudo apt-get update && sudo apt-get install stack -y
 
-touch $HOME/aliases 
-
-case $GHC_VERSION in
-    710)
-        cat >> $HOME/aliases << EOF
-alias wgstk='wget https://www.stackage.org/nightly/cabal.config'
-EOF
-        ;;
-    784)
-        cat >> $HOME/aliases << EOF
-alias wgstk='wget https://www.stackage.org/lts/cabal.config'
-EOF
-        ;;
-    *)
-        echo "Invalid GHC_VERSION : $GHC_VERSION"
-        exit 1
-        ;;
-esac
-
 timestamp_finish

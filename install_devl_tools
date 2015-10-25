@@ -3,18 +3,14 @@
 . ./setup_environment
 timestamp_start
 
-apt-get update
-
-## basics
-apt-get install -y \
+basics=" \
     daemontools \
     git \
     openssh-server \
     tmux \
-    vim-gtk
+    vim-gtk"
 
-## needed for ghc & ghcjs
-apt-get install -y \
+ghc_and_ghcjs_prereq=" \
     autoconf  \
     automake  \
     bison \
@@ -42,19 +38,23 @@ apt-get install -y \
     npm  \
     pkg-config \
     python  \
-    sudo  \
     texlive-font-utils \
-    xutils-dev 
+    xutils-dev "
 
-## needed for nix
-apt-get install -y \
+nix_prereq=" \
     bison \
     curl \
     libcurl4-openssl-dev \
     libdbd-sqlite3-perl \
     libdbi-perl \
     libwww-curl-perl \
-    pkg-config \
-    sudo  
+    pkg-config "
+
+sudo apt-get update
+
+for s in apt-utils $basics $ghc_and_ghcjs_prereq; do
+    echo "apt-get INSTALLING $s"
+    sudo apt-get install -y $s
+done 
 
 timestamp_finish

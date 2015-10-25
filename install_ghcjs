@@ -4,7 +4,7 @@
 timestamp_start
 
 git clone https://github.com/ghcjs/ghcjs.git 
-git clone https://github.com/ghcjs/ghcjs-prim.git 
-cabal install --reorder-goals --max-backjumps=-1 ./ghcjs ./ghcjs-prim
+cabal install --reorder-goals --max-backjumps=-1 ./ghcjs 
+ghcjs-boot --dev
 
 timestamp_finish

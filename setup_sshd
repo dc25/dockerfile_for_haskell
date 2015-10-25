@@ -3,14 +3,14 @@
 . ./setup_environment
 timestamp_start
 
-mkdir -p /services/sshd /var/run/sshd 
+sudo mkdir -p /services/sshd /var/run/sshd 
 
-cat > /services/sshd/run << EOF
+cat << EOF | sudo tee /services/sshd/run 
 #!/bin/bash
 exec /usr/sbin/sshd
 EOF
 
-chmod +x /services/sshd/run
-sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+sudo chmod +x /services/sshd/run
+sudo sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
 timestamp_finish
