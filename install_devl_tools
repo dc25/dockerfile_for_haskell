@@ -39,7 +39,9 @@ ghc_and_ghcjs_prereq=" \
     pkg-config \
     python  \
     texlive-font-utils \
-    xutils-dev "
+    unzip \
+    xutils-dev \
+    zip "
 
 nix_prereq=" \
     bison \
