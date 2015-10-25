@@ -1,5 +1,5 @@
 #! /bin/bash
-cd /dockerStart
+cd /start
 
 mkdir -p $HOME/.ssh
 cp authorized_keys $HOME/.ssh
