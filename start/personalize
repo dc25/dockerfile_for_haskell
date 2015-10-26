@@ -14,3 +14,8 @@ EOF
 for s in .cabal .ghc .ghcjs .haste .vim .vimrc; do
     ln -s /home/ghc/$s $HOME
 done
+
+### git global configuration - uncomment as needed ###
+# git config --global user.email "you@yourmail.com"
+# git config --global user.name "First Last"             
+
