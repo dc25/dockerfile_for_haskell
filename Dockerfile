@@ -4,25 +4,28 @@ FROM ubuntu:vivid
 ENV USER_NAME ghc
 ENV USER_ID 54836
 
-ENV WORKAREA /home/$USER_NAME/workarea/
-
 # Set the locale - was (and may still be ) necessary for ghcjs-boot to work
+# Got this originally here: # http://askubuntu.com/questions/581458/how-to-configure-locales-to-unicode-in-a-docker-ubuntu-14-04-container
+#
+# 2015-10-25 It seems like ghcjs-boot works without this now but when I 
+# removed it, vim starting emitting error messages when using plugins 
+# pathogen and vim2hs together.  
+#
 RUN locale-gen en_US.UTF-8  
 ENV LANG en_US.UTF-8  
 ENV LANGUAGE en_US:en  
 ENV LC_ALL en_US.UTF-8  
 
+# Create a new user, to do the rest of the build.
 RUN apt-get install -y sudo
 RUN adduser --disabled-password --gecos '' --uid $USER_ID $USER_NAME
 RUN adduser $USER_NAME sudo 
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-
 USER $USER_NAME
 
+ENV WORKAREA /home/$USER_NAME/workarea/
 RUN mkdir -p $WORKAREA
 WORKDIR $WORKAREA
-
-RUN echo $WORKAREA
 
 COPY setup_environment $WORKAREA
 COPY timestamp $WORKAREA
