@@ -11,4 +11,4 @@ alias cdgnc='cd /repos/gitnc'
 alias cdgit='cd /repos/git'
 
 
-cd /repos/gitnc/backgammon
+cd /repos/gitnc/try-stack-reflex/peg-solitaire/src
