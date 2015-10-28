@@ -1,3 +1,10 @@
+set sw=4
+set ts=4
+set expandtab
+set ic
+set fileformat=unix
+set encoding=utf-8
+
 " pathogen related
 execute pathogen#infect()
 syntax on
@@ -18,3 +25,5 @@ set nofoldenable
 au FileType haskell nnoremap <buffer> <F2> :HdevtoolsType<CR>
 au FileType haskell nnoremap <buffer> <silent> <F3> :HdevtoolsClear<CR>
 au FileType haskell nnoremap <buffer> <silent> <F4> :HdevtoolsInfo<CR>
+
+so $HOME/myVimrc
