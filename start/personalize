@@ -4,6 +4,7 @@ cd /start
 mkdir -p $HOME/.ssh
 cp authorized_keys $HOME/.ssh
 cp startup $HOME
+cp myVimrc $HOME
 
 touch $HOME/.bashrc
 cat >> $HOME/.bashrc << EOF
