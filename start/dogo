@@ -1,0 +1,25 @@
+#! /bin/bash
+
+# This script starts a docker container that runs start.sh .
+# The name and id of the current user are passed to start.sh so that start.sh
+# can create a user with the same name and id inside the docker image.
+
+if [[ "$#" -eq 1 ]]; then
+    DOCKER_IMAGE=$1
+else 
+    echo "Usage: $0 <dockerImage>"
+    exit -1
+fi
+
+START_SCRIPT=start.sh
+
+if [[ ! -e $START_SCRIPT ]]; then
+    echo "$0 expects $START_SCRIPT to be present in local directory."
+    exit -1
+fi
+
+START_DIR=`pwd`
+USER_NAME=`id -u -n`
+USER_ID=`id -u`
+
+exec sudo /usr/bin/docker run -v /home/dave/repos:/repos -v `pwd`:/start --entrypoint /start/$START_SCRIPT $DOCKER_IMAGE $USER_NAME $USER_ID
