@@ -1,1 +1,3 @@
 " Customize vim startup using this file.
+map <F8> :'c,.w! ~/tmp/xxx
+map <F9> :r ~/tmp/xxx

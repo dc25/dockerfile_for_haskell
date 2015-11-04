@@ -1,1 +1,5 @@
+## Add your public ssh key for (passwordless) login to docker container.
+## Typically this is found in either id_dsa.pub or id_rsa.pub in $HOME/.ssh 
+## Typically this is created by running ssh-keygen .
+
 ssh-dss AAAAB3NzaC1kc3MAAACBAJTu5e8d1zzZk012hPAIIjLlw6wPqb248GNHLEu9Bc3abRuQztT66YUNWve/exVx68Vj0lNBo6uNdxwoj/xNXGtGcinP76rsS8J1Hy2uYzEY+vDW8dVjYxqgC/S6OHFaKQZ+20uoh6796kSoiBsSGT6bkjP0Vz720HjUDCx392bPAAAAFQDVwDewXpscykH0ydU2nslH2pm8HwAAAIBTJA09upY9ijmZOqkd2s5ndJdwqAq3POPAsP+98zWzRHOOclfsTuNvkV5lh2ownlkLnkZrbCbvQTLoyU/TUjKPUKD+2NV6FUzSmDDSjlXIvTxm9YzC+lKPDySpWOquGWCx4J4aMLy9zmcaC/m0CsV93qwYWru3m3sa39T6sLpD7gAAAIAKmpTCCPkhlSQVOTztIiZhcOlvzPnFxP5Ma8ymASf+7OSxDreiKFY+28GTPIfwYsSC6aLnIiutYjzo5V+EqObB/N4QPG01DqEjJbVJBu3She+D110181AtF6r9vW3Kf1fyje7WIM/Y5pu94SZguMvNmtu+Od6rUSGgUqquKQrnAA== dave@peach
