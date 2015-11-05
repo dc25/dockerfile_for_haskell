@@ -1,7 +1,7 @@
 FROM ubuntu:wily
 
-# Build as user ghc with "random" user id.
-ENV USER_NAME ghc
+# Build as user "builder" with arbitrary user id.
+ENV USER_NAME builder
 ENV USER_ID 54836
 
 # Set the locale - was (and may still be ) necessary for ghcjs-boot to work
