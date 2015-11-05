@@ -5,9 +5,8 @@ This repository holds a Dockerfile and a collection of scripts that are used by 
 The resulting environment contains the following
 
 * Compilers
-  * ghc 7.8.4  (built from source using haskell-platform, disabled by default)
   * ghc 7.10.2 (built from source using ghc 7.8.4)
-  * haste 0.5.0 (built from source using ghc 7.8.4)
+  * haste 0.5.2 (built from source using ghc 7.10.2)
   * ghcjs ( the most recent as of time of image creation ; built from source using ghc 7.10.2 )  
   * typescript (via npm)
 * Haskell development tools
@@ -23,24 +22,20 @@ The resulting environment contains the following
     * syntastic (cloned from github)
     * vim-hdevtools (cloned from github)
     * vim2hs (cloned from github)
-  * atom (from atom.io; with Haskell related extensions)
-    * language-haskell  (via apm)
-    * haskell-ghc-mod  (via apm)
-    * ide-haskell  (via apm)
-    * autocomplete-haskell`(via apm)
+    * vimproc (cloned from github)
+    * ghcmod-vim (cloned from github)
 * Miscelaneous
   * sshd (via apt-get)
   * tmux (via apt-get)
-
-Edit the personalize script before building the development environment.  The most important thing you need to change in the personalize script is the public key value near the top.  This will allow passwordless ssh login from the host machine.
 
 Use docker to build the development environment :
 
     docker build -t ghc .
 
-Use docker to run the development environment :
+Use the start/dogo script inside the start directory to run the development environment :
 
-    docker run -v <hostDirectory>:<pathToHostDirectoryInContainer> ghc 
+    cd start
+    ./dogo ghc
 
 Use docker to identify the ip address of the running container:
 
