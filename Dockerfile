@@ -1,4 +1,4 @@
-FROM ubuntu:vivid
+FROM ubuntu:wily
 
 # Build as user ghc with "random" user id.
 ENV USER_NAME ghc
