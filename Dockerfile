@@ -79,6 +79,9 @@ RUN ./install_ghcjs
 COPY install_typescript $WORKAREA
 RUN ./install_typescript
 
+##########################################################################
+##### Configure vim for haskell                                      #####
+##########################################################################
 COPY setup_vim_plugins $WORKAREA
 RUN ./setup_vim_plugins 
 
