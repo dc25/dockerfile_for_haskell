@@ -5,7 +5,6 @@
 # can create a user with the same name and id inside the docker image.
 
 DOCKER_ARGUMENTS=$*
-echo $DOCKER_ARGUMENTS
 
 # Technique for start dir thanks to http://stackoverflow.com/a/246128/509928 .
 RELATIVE_START_DIR="$( dirname "${BASH_SOURCE[0]}" )"
