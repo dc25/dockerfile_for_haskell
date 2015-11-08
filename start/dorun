@@ -85,4 +85,4 @@ fi
 USER_NAME=`id -u -n`
 USER_ID=`id -u`
 
-exec sudo /usr/bin/docker run -v $START_DIR:/start --entrypoint /start/$START_SCRIPT $DOCKER_ARGUMENTS $USER_NAME $USER_ID
+exec sudo /usr/bin/docker run -v $START_DIR:/start -v `pwd`:/workdir --entrypoint /start/$START_SCRIPT $DOCKER_ARGUMENTS $USER_NAME $USER_ID
