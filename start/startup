@@ -3,16 +3,9 @@
 
 
 export PATH=\
-/home/ghc/.cabal/bin:\
+/home/builder/.cabal/bin:\
 $PATH
 
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-alias v=vim
-alias pyser='python -m SimpleHTTPServer'
-alias cdgnc='cd /repos/gitnc'
-alias cdgit='cd /repos/git'
-
-
-cd /repos/gitnc/try-stack-reflex/peg-solitaire/src

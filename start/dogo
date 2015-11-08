@@ -12,6 +12,71 @@ START_DIR="$( cd $RELATIVE_START_DIR && pwd )"
 
 START_SCRIPT=start.sh
 
+SSH_DIR=$HOME/.ssh
+RSA=$SSH_DIR/id_rsa
+RSA_PUB=${RSA}.pub
+DSA_PUB=$SSH_DIR/id_dsa.pub
+AUTHORIZED_KEYS=$RELATIVE_START_DIR/authorized_keys
+
+# If no key pair exists, offer to create and copy to authorized_keys
+if [[ ! -e $RSA_PUB && ! -e $DSA_PUB ]]; then
+    echo "No public/private .ssh key pairs exist."
+    DEFAULT_ACTION="y"
+    read -e -p "Create keys and copy public key to $AUTHORIZED_KEYS [y/n/q]? " -i $DEFAULT_ACTION ACTION
+    case $ACTION in
+        y)
+            ssh-keygen -q -P "" -f $RSA
+            cp $RSA_PUB $AUTHORIZED_KEYS
+            ;;
+        q)
+            echo "exiting" 
+            exit 1
+            ;;
+        n)
+            echo "Continuing without creating $RSA and $RSA_PUB" 
+            ;;
+        *)
+            echo "Invalid input: $ACTION" 
+            exit 1
+            ;;
+    esac
+fi
+
+if [[ -e $RSA_PUB ]] ; then
+    PUBLIC_KEY=$RSA_PUB
+fi
+
+if [[ -e $DSA_PUB ]] ; then
+    PUBLIC_KEY=$DSA_PUB
+fi
+
+# If no key pair but public key is different from authorized_keys then 
+# offer to copy existing public_key to authorized_keys
+if [[ "$PUBLIC_KEY" != "" ]]; then
+    if ! cmp $PUBLIC_KEY $AUTHORIZED_KEYS; then
+        echo "Public key exists but is different from $AUTHORIZED_KEYS"
+        DEFAULT_ACTION="y"
+        read -e -p "Copy public key to $AUTHORIZED_KEYS [y/n/q]? " -i $DEFAULT_ACTION ACTION
+        case $ACTION in
+            y)
+                cp $PUBLIC_KEY $AUTHORIZED_KEYS
+                ;;
+            q)
+                echo "exiting" 
+                exit 1
+                ;;
+            n)
+                echo "Continuing without copying $PUBLIC_KEY to $AUTHORIZED_KEYS" 
+                ;;
+            *)
+                echo "Invalid input: $ACTION" 
+                exit 1
+                ;;
+        esac
+
+    fi
+fi
+
 if [[ ! -e $START_DIR/$START_SCRIPT ]]; then
     echo "$0 expects $RELATIVE_START_DIR/$START_SCRIPT to be present."
     exit -1
