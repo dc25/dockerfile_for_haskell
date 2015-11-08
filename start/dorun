@@ -7,7 +7,7 @@
 DOCKER_ARGUMENTS=$*
 
 # Technique for start dir thanks to http://stackoverflow.com/a/246128/509928 .
-RELATIVE_START_DIR="$( dirname "${BASH_SOURCE[0]}" )"
+RELATIVE_START_DIR="$( dirname "${BASH_SOURCE[0]}" )/shared"
 START_DIR="$( cd $RELATIVE_START_DIR && pwd )"
 
 START_SCRIPT=start.sh
