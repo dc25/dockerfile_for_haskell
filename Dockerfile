@@ -27,63 +27,63 @@ ENV WORKAREA /home/$USER_NAME/workarea/
 RUN mkdir -p $WORKAREA
 WORKDIR $WORKAREA
 
-COPY scripts/setup_environment $WORKAREA
-COPY scripts/timestamp $WORKAREA
+COPY build_scripts/setup_environment $WORKAREA
+COPY build_scripts/timestamp $WORKAREA
 
-COPY scripts/install_devl_tools $WORKAREA
+COPY build_scripts/install_devl_tools $WORKAREA
 RUN ./install_devl_tools 
 
-COPY scripts/setup_sshd $WORKAREA
+COPY build_scripts/setup_sshd $WORKAREA
 RUN ./setup_sshd 
 
-COPY scripts/install_cabal_from_source $WORKAREA
+COPY build_scripts/install_cabal_from_source $WORKAREA
 RUN ./install_cabal_from_source -b cabal-install-v1.22.6.0 
 
-COPY scripts/install_alex_and_happy $WORKAREA
+COPY build_scripts/install_alex_and_happy $WORKAREA
 RUN ./install_alex_and_happy 
 
 ##########################################################################
 ##### Install ghc 7.10.2                                             #####
 ##########################################################################
-COPY scripts/install_ghc $WORKAREA
+COPY build_scripts/install_ghc $WORKAREA
 RUN ./install_ghc -v 710 -b ghc-7.10.2-release 
 
 ##########################################################################
 ##### Install some haskell development utilities                     #####
 ##########################################################################
-COPY scripts/install_haskell_devl_tools $WORKAREA
+COPY build_scripts/install_haskell_devl_tools $WORKAREA
 RUN ./install_haskell_devl_tools -v 710
 
-COPY scripts/setup_stack $WORKAREA
+COPY build_scripts/setup_stack $WORKAREA
 RUN ./setup_stack -v 710
 
 ##########################################################################
 ##### Install haste.                                                 #####
 ##########################################################################
-COPY scripts/install_haste $WORKAREA
+COPY build_scripts/install_haste $WORKAREA
 RUN ./install_haste -b 0.5.2
 
 ##########################################################################
 ##### Install ghcjs. Requires a recent version of node so install    #####
 ##### that first.                                                    #####
 ##########################################################################
-COPY scripts/install_node $WORKAREA
+COPY build_scripts/install_node $WORKAREA
 RUN ./install_node -b v0.12.7-release 
 
-COPY scripts/install_ghcjs $WORKAREA
+COPY build_scripts/install_ghcjs $WORKAREA
 RUN ./install_ghcjs 
 
 ##########################################################################
 ##### Install typescript                                             #####
 ##########################################################################
-COPY scripts/install_typescript $WORKAREA
+COPY build_scripts/install_typescript $WORKAREA
 RUN ./install_typescript
 
 ##########################################################################
 ##### Configure vim for haskell                                      #####
 ##########################################################################
-COPY scripts/setup_vim_plugins $WORKAREA
+COPY build_scripts/setup_vim_plugins $WORKAREA
 RUN ./setup_vim_plugins 
 
-COPY scripts/vimrc $WORKAREA
+COPY build_scripts/vimrc $WORKAREA
 RUN cp $WORKAREA/vimrc $HOME/.vimrc
