@@ -1,0 +1,9 @@
+#! /bin/bash
+if [[ "$#" -gt 0 ]]; then
+    echo "parameters" "$*" 
+    ipaddr="$*"
+else
+    ipaddr=`dockr ps -q | xargs dockr inspect --format '{{ .NetworkSettings.IPAddress }}' | head -n 1`
+fi
+echo "IP address: $ipaddr"
+ssh $ipaddr -X -t 'tmux a || tmux || /bin/bash'
