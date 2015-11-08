@@ -8,5 +8,5 @@ sudo adduser $USER_NAME sudo
 
 sudo su $USER_NAME -c /start/personalize.sh
 
-echo "Starting sshd"
+echo "sshd started"
 sudo /usr/bin/svscan /services/
