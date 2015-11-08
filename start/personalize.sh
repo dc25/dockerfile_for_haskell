@@ -17,7 +17,7 @@ EOF
 
 ## Where possible use configuration file in /home/gjc
 for s in .ghc .ghcjs .haste .vim .vimrc; do
-    ln -s /home/ghc/$s $HOME
+    ln -s /home/builder/$s $HOME
 done
 
 ## Update cabal, creating ~/.cabal directory.  
