@@ -3,7 +3,7 @@
 # of this file should contain the contents of a public key file 
 # (id_rsa.pub or id_dsa.pub) from $HOME/.ssh on the host machine.  
 #
-# The dorun script in this directory will compare this file with the public key
+# The start_scripts/dorun script will compare this file with the public key
 # file and if they differ, with the users permission, replace this file with
 # a copy of the public key file.  You, the user of the dorun script, should
 # not have to edit this file by hand.
