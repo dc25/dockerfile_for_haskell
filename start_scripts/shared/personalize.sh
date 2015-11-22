@@ -30,7 +30,7 @@ done
 ## Update cabal, creating ~/.cabal directory.  
 ## Can't use /home/ghc/.cabal because cabal wants to write to this directory.
 echo "running cabal update"
-cabal update
+cabal update > /dev/null 2>&1
 
 ### git global configuration - customize as needed ###
 ## git config --global user.email "youremail@yourserver.com"
