@@ -23,11 +23,13 @@ done
 ## Make local copies of some /home/builder content .
 ## If necessary, copy configuration file in /home/gjc
 for s in .vim .vimrc; do
+    echo "copying /home/builder/$s to $HOME"
     cp -r /home/builder/$s $HOME
 done
 
 ## Update cabal, creating ~/.cabal directory.  
 ## Can't use /home/ghc/.cabal because cabal wants to write to this directory.
+echo "running cabal update"
 cabal update
 
 ### git global configuration - customize as needed ###
