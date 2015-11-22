@@ -15,9 +15,15 @@ cat >> $HOME/.bashrc << EOF
 . ~/startup
 EOF
 
-## Where possible use configuration file in /home/gjc
-for s in .ghc .ghcjs .haste .vim .vimrc; do
+## Link to some large configuration directories in /home/builder
+for s in .ghc .ghcjs .haste ; do
     ln -s /home/builder/$s $HOME
+done
+
+## Make local copies of some /home/builder content .
+## If necessary, copy configuration file in /home/gjc
+for s in .vim .vimrc; do
+    cp -r /home/builder/$s $HOME
 done
 
 ## Update cabal, creating ~/.cabal directory.  
