@@ -82,8 +82,24 @@ RUN ./install_typescript
 ##########################################################################
 ##### Configure vim for haskell                                      #####
 ##########################################################################
-COPY build_scripts/setup_vim_plugins $WORKAREA
-RUN ./setup_vim_plugins 
+COPY build_scripts/setup_vim_plugins_for_haskell $WORKAREA
+RUN ./setup_vim_plugins_for_haskell 
 
+##########################################################################
+##### Install elm                                                    #####
+##########################################################################
+COPY build_scripts/install_elm $WORKAREA
+RUN ./install_elm
+
+##########################################################################
+##### Configure vim for elm                                          #####
+##########################################################################
+COPY build_scripts/setup_vim_plugins_for_elm $WORKAREA
+RUN ./setup_vim_plugins_for_elm 
+
+##########################################################################
+##### Add in vimrc file with settings for haskell, elm, etc          #####
+##########################################################################
 COPY build_scripts/vimrc $WORKAREA
 RUN cp $WORKAREA/vimrc $HOME/.vimrc
+

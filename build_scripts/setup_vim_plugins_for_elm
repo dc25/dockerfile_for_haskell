@@ -1,0 +1,21 @@
+#! /bin/bash
+. ./setup_environment
+timestamp_start
+
+
+#### pathogen
+if [[ ! -e $HOME/.vim/autoload/pathogen.vim ]]; then
+    mkdir -p $HOME/.vim/autoload
+    cd /tmp
+    git clone https://github.com/tpope/vim-pathogen.git
+    cp vim-pathogen/autoload/pathogen.vim $HOME/.vim/autoload
+    rm -rf vim-pathogen
+fi
+
+mkdir -p $HOME/.vim/bundle
+cd $HOME/.vim/bundle
+
+#### elm.vim
+git clone https://github.com/lambdatoast/elm.vim.git
+
+timestamp_finish
