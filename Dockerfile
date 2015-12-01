@@ -61,7 +61,7 @@ RUN ./setup_stack -v 710
 ##### Install haste.                                                 #####
 ##########################################################################
 COPY build_scripts/install_haste $WORKAREA
-RUN ./install_haste -b 0.5.2
+RUN ./install_haste -b 0.5.3
 
 ##########################################################################
 ##### Install ghcjs. Requires a recent version of node so install    #####
