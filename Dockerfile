@@ -2,7 +2,7 @@ FROM ubuntu:wily
 
 # Build as user "builder" with arbitrary user id.
 ENV USER_NAME builder
-ENV USER_ID 54836
+ENV USER_ID 54838
 
 # Set the locale - was (and may still be ) necessary for ghcjs-boot to work
 # Got this originally here: # http://askubuntu.com/questions/581458/how-to-configure-locales-to-unicode-in-a-docker-ubuntu-14-04-container
