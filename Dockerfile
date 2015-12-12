@@ -2,7 +2,7 @@ FROM ubuntu:wily
 
 # Build as user "builder" with arbitrary user id.
 ENV USER_NAME builder
-ENV USER_ID 54838
+ENV USER_ID 54840
 
 # Set the locale - was (and may still be ) necessary for ghcjs-boot to work
 # Got this originally here: # http://askubuntu.com/questions/581458/how-to-configure-locales-to-unicode-in-a-docker-ubuntu-14-04-container
@@ -43,10 +43,10 @@ COPY build_scripts/install_alex_and_happy $WORKAREA
 RUN ./install_alex_and_happy 
 
 ##########################################################################
-##### Install ghc 7.10.2                                             #####
+##### Install ghc 7.10.3                                             #####
 ##########################################################################
 COPY build_scripts/install_ghc $WORKAREA
-RUN ./install_ghc -v 710 -b ghc-7.10.2-release 
+RUN ./install_ghc -v 710 -b ghc-7.10.3-release 
 
 ##########################################################################
 ##### Install some haskell development utilities                     #####
