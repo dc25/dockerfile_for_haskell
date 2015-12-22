@@ -103,3 +103,6 @@ RUN ./setup_vim_plugins_for_elm
 COPY build_scripts/vimrc $WORKAREA
 RUN cp $WORKAREA/vimrc $HOME/.vimrc
 
+RUN mkdir -p $WORKAREA/runtime
+COPY build_scripts/runtime/* $WORKAREA/runtime/
+
