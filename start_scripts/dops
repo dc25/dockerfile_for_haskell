@@ -1,2 +1,0 @@
-#! /bin/bash
-dockr ps -q

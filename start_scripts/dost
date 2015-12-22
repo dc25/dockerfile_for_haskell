@@ -1,8 +1,0 @@
-#! /bin/bash
-if [[ "$#" -gt 0 ]]; then
-    container_id="$*"
-else
-    container_id=`dockr ps -q`
-fi
-echo "Container ID: $container_id"
-dockr stop $container_id
