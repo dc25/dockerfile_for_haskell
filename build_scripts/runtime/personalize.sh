@@ -4,14 +4,15 @@
 # Edit to suit your own tastes.
 
 
-BUILDER_COPY_FILES="myVimrc startup .ssh/authorized_keys .vimrc .vim .bashrc"
+BUILDER_COPY_FILES="myVimrc startup .ssh/authorized_keys .vimrc .vim .bashrc .ghc .haste"
 
 cd /home/builder/
-find $BUILDER_COPY_FILES -depth -print0 | cpio -pdum0 $HOME > /dev/null
+find $BUILDER_COPY_FILES -depth -print0 | cpio -pdum0 $HOME > /dev/null 2>&1
 chmod 600 $HOME/.ssh/authorized_keys
 
 ## Link to some large configuration directories in /home/builder
-for s in .ghc .ghcjs .haste ; do
+## Is the .ghcjs directory even necessary when using sandboxes?
+for s in .ghcjs ; do
     ln -s /home/builder/$s $HOME
 done
 
