@@ -1,0 +1,11 @@
+#! /bin/bash
+
+. ./setup_environment
+timestamp_start
+
+for s in cpio $basics $ghc_and_ghcjs_prereq; do
+    echo "apt-get INSTALLING $s"
+    sudo apt-get install -y $s
+done 
+
+timestamp_finish

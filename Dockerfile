@@ -103,6 +103,19 @@ RUN ./setup_vim_plugins_for_elm
 COPY build_scripts/vimrc $WORKAREA
 RUN cp $WORKAREA/vimrc $HOME/.vimrc
 
+COPY build_scripts/install_devl_tools2 $WORKAREA
+RUN ./install_devl_tools2 
+
 RUN mkdir -p $WORKAREA/runtime
-COPY build_scripts/runtime/* $WORKAREA/runtime/
+
+COPY build_scripts/runtime/myVimrc            $WORKAREA/runtime/
+RUN cp $WORKAREA/runtime/myVimrc $HOME
+
+COPY build_scripts/runtime/startup            $WORKAREA/runtime/
+RUN cp $WORKAREA/runtime/startup $HOME
+
+RUN echo ". ~/startup" >> ~/.bashrc
+
+COPY build_scripts/runtime/personalize.sh     $WORKAREA/runtime/
+COPY build_scripts/runtime/start.sh           $WORKAREA/runtime/
 

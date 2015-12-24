@@ -4,10 +4,10 @@
 
 export PATH=\
 /home/builder/.cabal/bin:\
+$HOME/.cabal/bin:\
 $PATH
 
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-cd /workdir
