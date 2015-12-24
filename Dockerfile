@@ -108,14 +108,13 @@ RUN ./install_devl_tools2
 
 RUN mkdir -p $WORKAREA/runtime
 
-COPY build_scripts/runtime/myVimrc            $WORKAREA/runtime/
-RUN cp $WORKAREA/runtime/myVimrc $HOME
+COPY build_scripts/myVimrc                    $WORKAREA/
+RUN cp $WORKAREA/myVimrc $HOME
 
-COPY build_scripts/runtime/startup            $WORKAREA/runtime/
-RUN cp $WORKAREA/runtime/startup $HOME
+COPY build_scripts/myBashrc                   $WORKAREA/
+RUN cp $WORKAREA/myBashrc $HOME
+RUN echo ". ~/myBashrc" >> ~/.bashrc
 
-RUN echo ". ~/startup" >> ~/.bashrc
-
-COPY build_scripts/runtime/personalize.sh     $WORKAREA/runtime/
-COPY build_scripts/runtime/start.sh           $WORKAREA/runtime/
+COPY build_scripts/personalize.sh             $WORKAREA/
+COPY build_scripts/start.sh                   $WORKAREA/
 
