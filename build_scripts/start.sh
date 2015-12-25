@@ -25,6 +25,8 @@ for s in .ghcjs ; do
     sudo su $USER_NAME -c "ln -s /home/builder/$s \$HOME"
 done
 
+sudo su $USER_NAME -c "cabal update"
+
 sudo su $USER_NAME -c /home/builder/workarea/personalize.sh
 
 echo "sshd started"
