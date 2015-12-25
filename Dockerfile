@@ -103,9 +103,6 @@ RUN ./setup_vim_plugins_for_elm
 COPY build_scripts/vimrc $WORKAREA
 RUN cp $WORKAREA/vimrc $HOME/.vimrc
 
-COPY build_scripts/install_devl_tools2 $WORKAREA
-RUN ./install_devl_tools2 
-
 RUN mkdir -p $WORKAREA/runtime
 
 COPY build_scripts/myVimrc                    $WORKAREA/
