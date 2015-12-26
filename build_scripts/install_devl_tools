@@ -5,9 +5,7 @@ timestamp_start
 
 basics=" \
     cpio \
-    daemontools \
     git \
-    openssh-server \
     tmux \
     vim-gtk"
 

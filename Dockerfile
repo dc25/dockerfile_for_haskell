@@ -33,9 +33,6 @@ COPY build_scripts/timestamp $WORKAREA
 COPY build_scripts/install_devl_tools $WORKAREA
 RUN ./install_devl_tools 
 
-COPY build_scripts/setup_sshd $WORKAREA
-RUN ./setup_sshd 
-
 COPY build_scripts/install_cabal_from_source $WORKAREA
 RUN ./install_cabal_from_source -b cabal-install-v1.22.6.0 
 
@@ -103,8 +100,6 @@ RUN ./setup_vim_plugins_for_elm
 COPY build_scripts/vimrc $WORKAREA
 RUN cp $WORKAREA/vimrc $HOME/.vimrc
 
-RUN mkdir -p $WORKAREA/runtime
-
 COPY build_scripts/myVimrc                    $WORKAREA/
 RUN cp $WORKAREA/myVimrc $HOME
 
@@ -117,4 +112,7 @@ RUN cp $WORKAREA/tmux.conf $HOME/.tmux.conf
 
 COPY build_scripts/personalize.sh             $WORKAREA/
 COPY build_scripts/start.sh                   $WORKAREA/
+
+USER root
+RUN cp $WORKAREA/start.sh /
 
