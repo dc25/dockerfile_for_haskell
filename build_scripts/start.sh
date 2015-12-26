@@ -14,7 +14,7 @@ sudo su $USER_NAME -c "mkdir \$HOME/.ssh"
 sudo su $USER_NAME -c "echo $USER_KEY > \$HOME/.ssh/authorized_keys"
 sudo su $USER_NAME -c "chmod 600 \$HOME/.ssh/authorized_keys"
 
-BUILDER_COPY_FILES="myVimrc myBashrc .vimrc .vim .bashrc .ghc .haste"
+BUILDER_COPY_FILES="myVimrc myBashrc .vimrc .vim .bashrc .ghc .haste .tmux.conf"
 
 cd /home/builder/
 sudo su $USER_NAME -c "find $BUILDER_COPY_FILES -depth -print0 | cpio -pdum0 \$HOME > /dev/null 2>&1"
@@ -25,4 +25,4 @@ sudo su $USER_NAME -c /home/builder/workarea/personalize.sh
 
 echo "sshd started"
 sudo /usr/bin/svscan /services/
-## sudo su - $USER_NAME /bin/bash -c tmux
+## sudo su $USER_NAME /bin/bash -c tmux
