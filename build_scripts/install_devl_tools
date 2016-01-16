@@ -3,57 +3,27 @@
 . ./setup_environment
 timestamp_start
 
-basics=" \
-    cpio \
-    git \
-    tmux \
-    vim-gtk"
-
 ghc_and_ghcjs_prereq=" \
-    autoconf  \
-    automake  \
     bison \
-    bzip2  \
     curl \
     dblatex  \
     docbook-utils  \
     docbook-xsl  \
-    g++  \
-    git  \
-    haskell-platform  \
     libcurl4-openssl-dev \
     libdbd-sqlite3-perl \
     libdbi-perl \
-    libgmp-dev  \
-    libtool  \
     libwww-curl-perl \
     libxml2-utils  \
     linux-tools-generic  \
-    make  \
-    ncurses-dev  \
-    net-tools \
-    nodejs  \
-    nodejs-legacy  \
-    npm  \
     pkg-config \
-    python  \
     texlive-font-utils \
     unzip \
     xutils-dev \
     zip "
 
-nix_prereq=" \
-    bison \
-    curl \
-    libcurl4-openssl-dev \
-    libdbd-sqlite3-perl \
-    libdbi-perl \
-    libwww-curl-perl \
-    pkg-config "
-
 sudo apt-get update
 
-for s in apt-utils $basics $ghc_and_ghcjs_prereq; do
+for s in apt-utils $ghc_and_ghcjs_prereq; do
     echo "apt-get INSTALLING $s"
     sudo apt-get install -y $s
 done 

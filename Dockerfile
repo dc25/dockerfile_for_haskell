@@ -30,8 +30,8 @@ WORKDIR $WORKAREA
 COPY build_scripts/setup_environment $WORKAREA
 COPY build_scripts/timestamp $WORKAREA
 
-COPY build_scripts/install_devl_tools $WORKAREA
-RUN ./install_devl_tools 
+COPY build_scripts/install_basic_tools $WORKAREA
+RUN ./install_basic_tools 
 
 COPY build_scripts/install_cabal_from_source $WORKAREA
 RUN ./install_cabal_from_source -b cabal-install-v1.22.6.0 
@@ -39,80 +39,55 @@ RUN ./install_cabal_from_source -b cabal-install-v1.22.6.0
 COPY build_scripts/install_alex_and_happy $WORKAREA
 RUN ./install_alex_and_happy 
 
-##########################################################################
-##### Install ghc 7.10.3                                             #####
-##########################################################################
 COPY build_scripts/install_ghc $WORKAREA
 RUN ./install_ghc -v 710 -b ghc-7.10.3-release 
 
-##########################################################################
-##### Install some haskell development utilities                     #####
-##########################################################################
-COPY build_scripts/install_haskell_devl_tools $WORKAREA
-RUN ./install_haskell_devl_tools -v 710
-
-COPY build_scripts/setup_stack $WORKAREA
-RUN ./setup_stack -v 710
-
-##########################################################################
-##### Install haste.                                                 #####
-##########################################################################
-COPY build_scripts/install_haste $WORKAREA
-RUN ./install_haste -b 0.5.3
-
-##########################################################################
-##### Install ghcjs. Requires a recent version of node so install    #####
-##### that first.                                                    #####
-##########################################################################
+#### ghcjs requires recent version of node so build node from source.
 COPY build_scripts/install_node $WORKAREA
 RUN ./install_node -b v0.12.7-release 
 
 COPY build_scripts/install_ghcjs $WORKAREA
 RUN ./install_ghcjs 
 
-##########################################################################
-##### Install typescript                                             #####
-##########################################################################
+COPY build_scripts/install_haste $WORKAREA
+RUN ./install_haste -b 0.5.3
+
+COPY build_scripts/setup_stack $WORKAREA
+RUN ./setup_stack 
+
 COPY build_scripts/install_typescript $WORKAREA
 RUN ./install_typescript
 
-##########################################################################
-##### Configure vim for haskell                                      #####
-##########################################################################
-COPY build_scripts/setup_vim_plugins_for_haskell $WORKAREA
-RUN ./setup_vim_plugins_for_haskell 
-
-##########################################################################
-##### Install elm                                                    #####
-##########################################################################
 COPY build_scripts/install_elm $WORKAREA
 RUN ./install_elm
 
-##########################################################################
-##### Configure vim for elm                                          #####
-##########################################################################
+COPY build_scripts/install_user_tools $WORKAREA
+RUN ./install_user_tools 
+
+COPY build_scripts/install_haskell_devl_tools $WORKAREA
+RUN ./install_haskell_devl_tools 
+
+COPY build_scripts/setup_vim_plugins_for_haskell $WORKAREA
+RUN ./setup_vim_plugins_for_haskell 
+
 COPY build_scripts/setup_vim_plugins_for_elm $WORKAREA
 RUN ./setup_vim_plugins_for_elm 
 
-##########################################################################
-##### Add in vimrc file with settings for haskell, elm, etc          #####
-##########################################################################
 COPY build_scripts/vimrc $WORKAREA
 RUN cp $WORKAREA/vimrc $HOME/.vimrc
 
-COPY build_scripts/myVimrc                    $WORKAREA/
+COPY build_scripts/myVimrc $WORKAREA/
 RUN cp $WORKAREA/myVimrc $HOME
 
-COPY build_scripts/myBashrc                   $WORKAREA/
+COPY build_scripts/myBashrc $WORKAREA/
 RUN cp $WORKAREA/myBashrc $HOME
 RUN echo ". ~/myBashrc" >> ~/.bashrc
 
-COPY build_scripts/tmux.conf                  $WORKAREA/
+COPY build_scripts/tmux.conf $WORKAREA/
 RUN cp $WORKAREA/tmux.conf $HOME/.tmux.conf
 
-COPY build_scripts/personalize.sh             $WORKAREA/
-COPY build_scripts/start.sh                   $WORKAREA/
+COPY build_scripts/personalize.sh $WORKAREA/
+COPY build_scripts/start.sh $WORKAREA/
 
 USER root
 RUN cp $WORKAREA/start.sh /
-

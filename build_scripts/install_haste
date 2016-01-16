@@ -6,6 +6,7 @@ timestamp_start
 cabal update
 
 sudo apt-get update && sudo apt-get install -y \
+    git \
     apt-utils \
     libbz2-dev
 

@@ -1,0 +1,19 @@
+#! /bin/bash
+
+. ./setup_environment
+timestamp_start
+
+basics=" \
+    cpio \
+    git \
+    tmux \
+    vim-gtk"
+
+sudo apt-get update
+
+for s in apt-utils $basics $ghc_and_ghcjs_prereq; do
+    echo "apt-get INSTALLING $s"
+    sudo apt-get install -y $s
+done 
+
+timestamp_finish
