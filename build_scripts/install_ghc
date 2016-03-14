@@ -1,30 +1,14 @@
 #! /bin/bash
 
 . ./setup_environment
-timestamp_start
 
 sudo apt-get update && sudo apt-get install haskell-platform git autoconf automake libtool make libgmp-dev ncurses-dev g++ python bzip2 -y
 
-mkdir $GHC_VERSION
-mkdir -p $BUILD_PREFIX
-cd $GHC_VERSION
-
-case "$GHC_VERSION" in
-    710) 
-        git clone -b $GIT_BRANCH  --recursive git://git.haskell.org/ghc.git 
-        cd ghc
-        ;;
-    *) 
-        echo "Invalid branch : $GIT_BRANCH"
-        exit 1
-        ;;
-esac
+git clone -b $GIT_BRANCH  --recursive git://git.haskell.org/ghc.git 
+cd ghc
 
 cat mk/build.mk.sample  | sed -e '/#Build.*quick$/s/^#//' > mk/build.mk 
 ./boot 
-./configure --prefix=$BUILD_PREFIX
+./configure 
 make 
 sudo make install
-
-timestamp_finish
-

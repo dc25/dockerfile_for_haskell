@@ -1,8 +1,0 @@
-#! /bin/bash
-
-. ./setup_environment
-timestamp_start
-
-sudo apt-get update && sudo apt-get install net-tools tmux vim-gtk -y
-
-timestamp_finish

@@ -2,20 +2,11 @@ export PATH=${HOME}/.cabal/bin:$PATH
 export WORKDIR=`pwd`
 
 GIT_BRANCH=master
-GHC_VERSION=NONE
-BUILD_PREFIX=/usr/local
 
-
-while getopts ":b:v:p:" opt; do
+while getopts ":b:" opt; do
   case $opt in
-    p)
-      BUILD_PREFIX=$OPTARG
-      ;;
     b)
       GIT_BRANCH=$OPTARG
-      ;;
-    v)
-      GHC_VERSION=$OPTARG
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
@@ -28,20 +19,5 @@ while getopts ":b:v:p:" opt; do
   esac
 done
 
-echo "GHC_VERSION=${GHC_VERSION}"
 echo "GIT_BRANCH=${GIT_BRANCH}"
-echo "BUILD_PREFIX=${BUILD_PREFIX}"
-
-SCRIPT_NAME=${0##*/}
-SCRIPT_ARGUMENTS=$*
-
-function timestamp_start
-{
-    ${WORKDIR}/timestamp start__${SCRIPT_NAME} ${SCRIPT_NAME} ${SCRIPT_ARGUMENTS} 
-}
-
-function timestamp_finish
-{
-    ${WORKDIR}/timestamp finish__${SCRIPT_NAME} ${SCRIPT_NAME} ${SCRIPT_ARGUMENTS} 
-}
 

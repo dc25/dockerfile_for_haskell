@@ -2,7 +2,7 @@ FROM ubuntu:wily
 
 # Build as user "builder" with arbitrary user id.
 ENV USER_NAME builder
-ENV USER_ID 54840
+ENV USER_ID 54842
 
 # Set the locale - was (and may still be ) necessary for ghcjs-boot to work
 # Got this originally here: # http://askubuntu.com/questions/581458/how-to-configure-locales-to-unicode-in-a-docker-ubuntu-14-04-container
@@ -28,7 +28,6 @@ RUN mkdir -p $WORKAREA
 WORKDIR $WORKAREA
 
 COPY build_scripts/setup_environment $WORKAREA
-COPY build_scripts/timestamp $WORKAREA
 
 COPY build_scripts/install_basic_tools $WORKAREA
 RUN ./install_basic_tools 
@@ -40,7 +39,7 @@ COPY build_scripts/install_alex_and_happy $WORKAREA
 RUN ./install_alex_and_happy 
 
 COPY build_scripts/install_ghc $WORKAREA
-RUN ./install_ghc -v 710 -b ghc-7.10.3-release 
+RUN ./install_ghc -b ghc-7.10.3-release 
 
 #### ghcjs requires recent version of node so build node from source.
 COPY build_scripts/install_node $WORKAREA
@@ -55,39 +54,10 @@ RUN ./install_haste -b 0.5.3
 COPY build_scripts/setup_stack $WORKAREA
 RUN ./setup_stack 
 
-COPY build_scripts/install_typescript $WORKAREA
-RUN ./install_typescript
-
-COPY build_scripts/install_elm $WORKAREA
-RUN ./install_elm
-
-COPY build_scripts/install_user_tools $WORKAREA
-RUN ./install_user_tools 
-
-COPY build_scripts/install_haskell_devl_tools $WORKAREA
-RUN ./install_haskell_devl_tools 
-
 COPY build_scripts/setup_vim_plugins_for_haskell $WORKAREA
 RUN ./setup_vim_plugins_for_haskell 
 
-COPY build_scripts/setup_vim_plugins_for_elm $WORKAREA
-RUN ./setup_vim_plugins_for_elm 
+COPY build_scripts/setup_sshd $WORKAREA
+RUN ./setup_sshd 
 
-COPY build_scripts/vimrc $WORKAREA
-RUN cp $WORKAREA/vimrc $HOME/.vimrc
-
-COPY build_scripts/myVimrc $WORKAREA/
-RUN cp $WORKAREA/myVimrc $HOME
-
-COPY build_scripts/myBashrc $WORKAREA/
-RUN cp $WORKAREA/myBashrc $HOME
-RUN echo ". ~/myBashrc" >> ~/.bashrc
-
-COPY build_scripts/tmux.conf $WORKAREA/
-RUN cp $WORKAREA/tmux.conf $HOME/.tmux.conf
-
-COPY build_scripts/personalize.sh $WORKAREA/
-COPY build_scripts/start.sh $WORKAREA/
-
-USER root
-RUN cp $WORKAREA/start.sh /
+COPY build_scripts $WORKAREA

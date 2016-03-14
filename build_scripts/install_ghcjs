@@ -1,10 +1,8 @@
 #! /bin/bash
 
 . ./setup_environment
-timestamp_start
 
 git clone https://github.com/ghcjs/ghcjs.git 
 cabal install --reorder-goals --max-backjumps=-1 ./ghcjs 
 ghcjs-boot --dev
 
-timestamp_finish

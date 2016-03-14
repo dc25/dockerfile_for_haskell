@@ -1,6 +1,4 @@
 #! /bin/bash
-. ./setup_environment
-timestamp_start
 
 mkdir -p $HOME/.vim/autoload
 
@@ -43,5 +41,3 @@ git clone https://github.com/eagletmt/ghcmod-vim.git
 ##
 ## Still using syntastic though to work with hdevtools and hlint.
 ##
-
-timestamp_finish

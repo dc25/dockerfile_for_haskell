@@ -1,7 +1,6 @@
 #! /bin/bash
 
 . ./setup_environment
-timestamp_start
 
 cabal update
 
@@ -14,6 +13,4 @@ git clone https://github.com/valderman/haste-compiler.git -b ${GIT_BRANCH}
 cd haste-compiler
 cabal install
 haste-boot --force --local
-
-timestamp_finish
 

@@ -1,7 +1,6 @@
 #! /bin/bash
 
 . ./setup_environment
-timestamp_start
 
 sudo apt-get update && sudo apt-get install haskell-platform -y
 
@@ -10,4 +9,3 @@ git clone -b ${GIT_BRANCH} git://github.com/haskell/cabal.git
 cd cabal
 cabal install Cabal/ cabal-install/ 
 
-timestamp_finish

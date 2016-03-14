@@ -1,8 +1,5 @@
 #! /bin/bash
 
-. ./setup_environment
-timestamp_start
-
 sudo mkdir -p /services/sshd /var/run/sshd 
 
 cat << EOF | sudo tee /services/sshd/run 
@@ -12,5 +9,3 @@ EOF
 
 sudo chmod +x /services/sshd/run
 sudo sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
-
-timestamp_finish

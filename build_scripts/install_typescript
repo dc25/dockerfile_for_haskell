@@ -1,9 +1,4 @@
 #! /bin/bash
 
-. ./setup_environment
-timestamp_start
-
 sudo npm install -g typescript
 sudo npm install -g tsd
-
-timestamp_finish

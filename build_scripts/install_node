@@ -1,7 +1,6 @@
 #! /bin/bash
 
 . ./setup_environment
-timestamp_start
 
 sudo apt-get update && sudo apt-get install python make g++ -y
 
@@ -11,4 +10,3 @@ cd node
 make 
 sudo make install 
 
-timestamp_finish
