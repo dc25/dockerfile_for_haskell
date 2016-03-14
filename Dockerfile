@@ -54,6 +54,9 @@ RUN ./install_haste -b 0.5.3
 COPY build_scripts/setup_stack $WORKAREA
 RUN ./setup_stack 
 
+COPY build_scripts/install_haskell_devl_tools $WORKAREA
+RUN ./install_haskell_devl_tools 
+
 COPY build_scripts/setup_vim_plugins_for_haskell $WORKAREA
 RUN ./setup_vim_plugins_for_haskell 
 
