@@ -2,7 +2,9 @@
 
 export USER_NAME=$1
 export USER_ID=$2
-export USER_KEY=$3
+if [ "$3" != "" ]; then
+    export USER_KEY=$3
+fi
 
 echo "configuring user: $USER_NAME ..."
 
@@ -10,8 +12,10 @@ sudo adduser --disabled-password --gecos '' --uid $USER_ID $USER_NAME > /dev/nul
 sudo adduser $USER_NAME sudo > /dev/null 2>&1 
 
 sudo su $USER_NAME -c "mkdir \$HOME/.ssh"
-sudo su $USER_NAME -c "echo $USER_KEY > \$HOME/.ssh/authorized_keys"
-sudo su $USER_NAME -c "chmod 600 \$HOME/.ssh/authorized_keys"
+if [ "$USER_KEY" != "" ]; then
+    sudo su $USER_NAME -c "echo $USER_KEY > \$HOME/.ssh/authorized_keys"
+    sudo su $USER_NAME -c "chmod 600 \$HOME/.ssh/authorized_keys"
+fi
 
 WORKAREA=/home/builder/workarea/
 cd $WORKAREA
@@ -30,5 +34,8 @@ sudo su $USER_NAME -c "cabal update"
 sudo su $USER_NAME -c "$WORKAREA/personalize.sh"
 
 echo "sshd started"
-sudo /usr/bin/svscan /services/
-## sudo su $USER_NAME /bin/bash -c tmux
+if [ "$USER_KEY" != "" ]; then
+    sudo /usr/bin/svscan /services/
+else
+    sudo su $USER_NAME /bin/bash -c tmux
+fi
