@@ -64,3 +64,4 @@ COPY build_scripts/setup_sshd $WORKAREA
 RUN ./setup_sshd 
 
 COPY build_scripts $WORKAREA
+RUN sudo cp start.sh /
