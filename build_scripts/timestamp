@@ -1,7 +1,0 @@
-#! /bin/bash
-
-TIMESTAMP_FILE_NAME=`date +%Y_%m_%d__%H_%M`__${1}
-
-mkdir -p ${HOME}/timestamps
-shift
-echo $* > ${HOME}/timestamps/${TIMESTAMP_FILE_NAME}
