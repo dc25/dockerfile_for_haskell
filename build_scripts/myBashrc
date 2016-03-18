@@ -3,8 +3,8 @@
 
 
 export PATH=\
-/home/builder/.cabal/bin:\
 $HOME/.cabal/bin:\
+/home/builder/.cabal/bin:\
 $PATH
 
 alias ..='cd ..'

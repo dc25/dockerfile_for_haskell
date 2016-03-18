@@ -29,8 +29,6 @@ sudo su $USER_NAME -c "echo '. ~/myBashrc' >> ~/.bashrc"
 cd $HOME/.vim
 sudo su $USER_NAME -c "find . -depth -print | cpio -pdvum ~/.vim" > /dev/null 2>&1
 
-sudo su $USER_NAME -c "cabal update"
-
 sudo su $USER_NAME -c "$WORKAREA/personalize.sh"
 
 echo "sshd started"
