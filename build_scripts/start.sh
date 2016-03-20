@@ -26,8 +26,10 @@ sudo su $USER_NAME -c "cp myVimrc ~"
 sudo su $USER_NAME -c "cp myBashrc ~"
 sudo su $USER_NAME -c "echo '. ~/myBashrc' >> ~/.bashrc"
 
-cd $HOME/.vim
-sudo su $USER_NAME -c "find . -depth -print | cpio -pdvum ~/.vim" > /dev/null 2>&1
+for s in .vim .haste; do
+    cd $HOME/$s
+    sudo su $USER_NAME -c "find . -depth -print | cpio -pdvum ~/$s" > /dev/null 2>&1
+done
 
 sudo su $USER_NAME -c "$WORKAREA/personalize.sh"
 
